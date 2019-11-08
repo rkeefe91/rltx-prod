@@ -27,6 +27,7 @@ CREATE VIEW [dbo].[tab2_ap_1year_mma_change_2] AS
 ---		4/8/2019 - Added OfficeKey to be used in further office metric calculations on push master table
 ---		6/28/2019 - Added new phone number and FN/LN columns to be used in push master table
 ---		9/6/2019 - Added join to Agents_Combined_Extended to populate missing emails and phone numbers where applicable
+---		11/7/2019 - Added List_last_12 column for use in monthly_push_master
 
 
 WITH first_trans AS (
@@ -90,7 +91,8 @@ SELECT rc.ID
 		ac.MemberFax,
 		ac.MemberHomePhone,
 		coalesce(ac.MemberMobilePhone,ex.CellPhone) As MemberMobilePhone,
-		coalesce(ac.MemberOfficePhone,ex.OfficePhone) As MemberOfficePhone
+		coalesce(ac.MemberOfficePhone,ex.OfficePhone) As MemberOfficePhone,
+		rc.List_Last_12
 FROM tab2_ap_1year_mma_change rc
 	LEFT JOIN first_trans
 		ON first_trans.agent_Key = rc.ID
