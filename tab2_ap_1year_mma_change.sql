@@ -29,6 +29,7 @@ AS
 -- 4/8/2019 - Added OfficeKey to be used in further office metric calculations on push master table
 -- 4/10/2019 - Changed to use work_most_recent_office table to tag agents in correct office
 -- 6/26/2019 - Changed to use the agent record to tag agent office correctly.
+-- 11/7/2019 - Added List_last_12 column for use in monthly_push_master
 
 SELECT a.ID
 	,a.SourceSystemID
@@ -57,6 +58,7 @@ SELECT a.ID
 	,o.Franchise
 	,o.OfficeAddress1
 	,o.OfficeKey
+	,b.List_last_12
 FROM tab_ap_rev_list_12mma a
 	JOIN tab_ap_rev_list_12mma b
 		ON a.ID = b.ID 
